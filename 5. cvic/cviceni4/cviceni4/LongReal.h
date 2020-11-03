@@ -17,6 +17,6 @@ private:
 
 public:
 	void nacti();
-	void tisk();
+	void tisk() const;
 };
 #endif

@@ -8,7 +8,7 @@ class Number
 public:
 	Number();
 	~Number();
-	void nacti();
-	void tisk();
+	virtual void nacti();
+	virtual void tisk() const;
 };
 #endif

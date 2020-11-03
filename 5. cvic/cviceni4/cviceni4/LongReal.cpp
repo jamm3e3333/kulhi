@@ -14,6 +14,6 @@ void LongReal::nacti(){
 	cin >> m_strNumber;
 }
 
-void LongReal::tisk(){
+void LongReal::tisk() const{
 	cout << m_strNumber << endl;
 }

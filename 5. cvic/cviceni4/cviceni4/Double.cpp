@@ -18,7 +18,7 @@ void Double::nacti(){
 }
 
 
-void Double::tisk(){
+void Double::tisk() const{
 
 	cout << m_dblHodnota << endl;
 }

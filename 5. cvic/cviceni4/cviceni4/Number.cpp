@@ -12,7 +12,7 @@ Number::~Number(){
 void Number::nacti(){
 }
 
-void Number::tisk(){
+void Number::tisk() const{
 }
 
 
