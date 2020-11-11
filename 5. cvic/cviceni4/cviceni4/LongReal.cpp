@@ -17,3 +17,8 @@ void LongReal::nacti(){
 void LongReal::tisk() const{
 	cout << m_strNumber << endl;
 }
+
+double LongReal::Hodnota() const{
+	return stod(m_strNumber);
+
+}

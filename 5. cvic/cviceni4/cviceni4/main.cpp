@@ -49,7 +49,7 @@ public:
 		cin >> m_intJmenovatel;
 	}
 
-	double hodnota() { // vypocte desetinnou hodnotu cisla
+	double Hodnota() const{ // vypocte desetinnou hodnotu cisla
 		return m_intCitatel /(double)m_intJmenovatel;
 	}
 
@@ -63,8 +63,8 @@ public:
 	static int porovnej(const void* A,const void* B) { 
 		zlomek& refA = *(zlomek*)A;
 		zlomek& refB = *(zlomek*)B;
-		if (refA.hodnota() < refB.hodnota()) return -1;
-		if (refA.hodnota() > refB.hodnota()) return 1;
+		if (refA.Hodnota() < refB.Hodnota()) return -1;
+		if (refA.Hodnota() > refB.Hodnota()) return 1;
 		return 0;
 	}
 
@@ -73,8 +73,27 @@ public:
 	}
 };
 
+ostream& operator<<(ostream& arg1, const Number& arg2){
+	return arg1 << arg2.Hodnota();
+}
+
 
 int main() {
+	zlomek z(1, 3);
+	Double d;
+	d.nacti();
+	LongReal l;
+	l.nacti();
+
+	cout << "z = " << z.Hodnota() << ", d = " << d.Hodnota() << ", l = " << l.Hodnota() << endl;
+
+	Number& n1 = z;
+	Number& n2 = d;
+	Number& n3 = l;
+
+	cout << "soucet = " << n1 + (n2 + n3) << endl;
+	//cout << "soucet =" << n1.operator+(n2.operator+(n3)) << endl;
+
 	list <Number*> seznam; //linearni seznam
 	string odpoved;
 		do{
@@ -110,11 +129,22 @@ int main() {
 		cout << endl << "Zadana cisla jsou tyto: " << endl;
 		list<Number*>::iterator i;
 
+
 		for(i = seznam.begin(); i!=seznam.end(); i++){
 			(*i)->tisk(); //volam ukazatelPredek->tisk()
+			cout << *(*i); // cout << Number(???)
+
 			cout << endl;
 		}
 
+		double soucet = 0;
+		for(i = seznam.begin(); i!=seznam.end(); i++){
+			soucet = *(*i)+soucet;
+			//soucet = UkazatelPredek->operator+(soucet); //opearator+(double arg);
+			(*i)->tisk(); //volam ukazatelPredek->tisk()
+			cout << endl;
+		}
+		cout << "soucet = " << soucet << endl;
 		for(i = seznam.begin(); i!=seznam.end(); i++){
 			delete (*i); //dealokace ukazatelPredek
 		}

@@ -18,5 +18,6 @@ private:
 public:
 	void nacti();
 	void tisk() const;
+	double Hodnota() const;
 };
 #endif
