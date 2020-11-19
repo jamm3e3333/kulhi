@@ -5,6 +5,7 @@
 #include "Number.h"
 #include "LongReal.h"
 #include <list>
+#include <fstream>
 
 using namespace std;
 
@@ -20,6 +21,8 @@ public:
 	}
 
 	zlomek(int citatel, int jmenovatel) {
+		//detekovat nulovy jmenovatel
+		if(jmenovatel == 0) throw (char*)"Nulovy jmenovatel v konstruktoru zlomku";
 		m_intCitatel = citatel;
 		m_intJmenovatel = jmenovatel;
 	}
@@ -43,10 +46,14 @@ public:
 	}
 
 	void nacti() {
+		int citatel, jmenovatel;
 		cout << "Nacti citatel: ";
-		cin >> m_intCitatel;
+		cin >> citatel;
 		cout << "Nacti jmenovatel: ";
-		cin >> m_intJmenovatel;
+		cin >> jmenovatel;
+		if(jmenovatel == 0) throw (char*)"Nulovy jmenovatel pri cteni z klavesnice!";
+		m_intCitatel = citatel;
+		m_intJmenovatel = jmenovatel;
 	}
 
 	double Hodnota() const{ // vypocte desetinnou hodnotu cisla
@@ -116,11 +123,15 @@ int main() {
 			}
 			// nactem hodnotu cisla z klavesnice 
 			cout << "Zadej hodnotu: ";
+
+			try{
 			ukazatelPredek->nacti(); // chceme volat cteni potomku
-
 			seznam.push_back(ukazatelPredek); //ukladam do linearniho seznamu
-
-
+			}
+			catch(char* err){
+				cout << "Pozor! Nastala chyba! Zadejte znovu. " << err << endl;
+				delete ukazatelPredek;
+			}
 			cout << "Pokracovat (A/N)?";
 			cin >> odpoved;
 		}while(odpoved.compare("A") == 0);
@@ -129,22 +140,34 @@ int main() {
 		cout << endl << "Zadana cisla jsou tyto: " << endl;
 		list<Number*>::iterator i;
 
+		try{
+			for(i = seznam.begin(); i!=seznam.end(); i++){
+				(*i)->tisk(); //volam ukazatelPredek->tisk()
+				cout << *(*i); // cout << Number(???)
 
-		for(i = seznam.begin(); i!=seznam.end(); i++){
-			(*i)->tisk(); //volam ukazatelPredek->tisk()
-			cout << *(*i); // cout << Number(???)
-
-			cout << endl;
+				cout << endl;
+			}
+		}
+		catch(exception &err){
+			cerr << "Nelze vytisknout obsah objektu chyba!!! " << endl;
+			cerr << err.what() << endl;
 		}
 
 		double soucet = 0;
-		for(i = seznam.begin(); i!=seznam.end(); i++){
-			soucet = *(*i)+soucet;
-			//soucet = UkazatelPredek->operator+(soucet); //opearator+(double arg);
-			(*i)->tisk(); //volam ukazatelPredek->tisk()
-			cout << endl;
+		try{
+			for(i = seznam.begin(); i!=seznam.end(); i++){
+			
+				soucet = *(*i)+soucet;
+				//soucet = UkazatelPredek->operator+(soucet); //opearator+(double arg);
+				(*i)->tisk(); //volam ukazatelPredek->tisk()
+				cout << endl;
+			}
+			cout << "soucet = " << soucet << endl;
 		}
-		cout << "soucet = " << soucet << endl;
+		catch(exception &err){
+			cout << "Nelze vypocist soucet, chyba !!!" << endl;
+			cout << err.what() << endl;
+		}
 		for(i = seznam.begin(); i!=seznam.end(); i++){
 			delete (*i); //dealokace ukazatelPredek
 		}

@@ -5,7 +5,6 @@ Number::Number(){
 
 
 Number::~Number(){
-	cout << "Volani destruktoru tridy \"Number\"" << endl;
 }
 
 

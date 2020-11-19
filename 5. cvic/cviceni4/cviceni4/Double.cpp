@@ -6,8 +6,6 @@ Double::Double(){
 
 
 Double::~Double(){
-	cout << "Volani destruktoru tridy \"Double\"" << endl;
-
 }
 
 
