@@ -1,0 +1,25 @@
+﻿Build started 24.11.2020 20:18:08.
+     1>Project "C:\Users\Uzivatel\Desktop\vsb-tuo\2. ročník\3. semestr\speciální programovací techniky\kulhi\kulhi\9.cviceni\files\files\files.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\files.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Uzivatel\Desktop\vsb-tuo\2. ročník\3. semestr\speciální programovací techniky\kulhi\kulhi\9.cviceni\files\Debug\files.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\files.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Uzivatel\Desktop\vsb-tuo\2. ročník\3. semestr\speciální programovací techniky\kulhi\kulhi\9.cviceni\files\Debug\files.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Uzivatel\Desktop\vsb-tuo\2. ročník\3. semestr\speciální programovací techniky\kulhi\kulhi\9.cviceni\files\Debug\files.lib" /MACHINE:X86 Debug\files.exe.embed.manifest.res
+         Debug\main.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\files.exe.embed.manifest" /manifest Debug\files.exe.intermediate.manifest
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         files.vcxproj -> C:\Users\Uzivatel\Desktop\vsb-tuo\2. ročník\3. semestr\speciální programovací techniky\kulhi\kulhi\9.cviceni\files\Debug\files.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\files.unsuccessfulbuild".
+         Touching "Debug\files.lastbuildstate".
+     1>Done Building Project "C:\Users\Uzivatel\Desktop\vsb-tuo\2. ročník\3. semestr\speciální programovací techniky\kulhi\kulhi\9.cviceni\files\files\files.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.55
