@@ -4,10 +4,12 @@
 #include "Double.h"
 #include "Number.h"
 #include "LongReal.h"
+#include <list>
+#include <fstream>
 
 using namespace std;
 
-class zlomek{
+class zlomek : public Number{
 private:
 	int m_intCitatel;
 	int m_intJmenovatel;
@@ -19,11 +21,13 @@ public:
 	}
 
 	zlomek(int citatel, int jmenovatel) {
+		//detekovat nulovy jmenovatel
+		if(jmenovatel == 0) throw (char*)"Nulovy jmenovatel v konstruktoru zlomku";
 		m_intCitatel = citatel;
 		m_intJmenovatel = jmenovatel;
 	}
 
-	zlomek& secti(const zlomek& arg) {
+	zlomek& secti(const zlomek& arg) const{
 		zlomek novy;
 		novy.m_intCitatel = m_intJmenovatel * arg.m_intJmenovatel;
 		novy.m_intJmenovatel = m_intCitatel * arg.m_intJmenovatel + m_intJmenovatel * arg.m_intCitatel;
@@ -42,13 +46,17 @@ public:
 	}
 
 	void nacti() {
+		int citatel, jmenovatel;
 		cout << "Nacti citatel: ";
-		cin >> m_intCitatel;
+		cin >> citatel;
 		cout << "Nacti jmenovatel: ";
-		cin >> m_intJmenovatel;
+		cin >> jmenovatel;
+		if(jmenovatel == 0) throw (char*)"Nulovy jmenovatel pri cteni z klavesnice!";
+		m_intCitatel = citatel;
+		m_intJmenovatel = jmenovatel;
 	}
 
-	double hodnota() { // vypocte desetinnou hodnotu cisla
+	double Hodnota() const{ // vypocte desetinnou hodnotu cisla
 		return m_intCitatel /(double)m_intJmenovatel;
 	}
 
@@ -62,8 +70,8 @@ public:
 	static int porovnej(const void* A,const void* B) { 
 		zlomek& refA = *(zlomek*)A;
 		zlomek& refB = *(zlomek*)B;
-		if (refA.hodnota() < refB.hodnota()) return -1;
-		if (refA.hodnota() > refB.hodnota()) return 1;
+		if (refA.Hodnota() < refB.Hodnota()) return -1;
+		if (refA.Hodnota() > refB.Hodnota()) return 1;
 		return 0;
 	}
 
@@ -72,30 +80,120 @@ public:
 	}
 };
 
+ostream& operator<<(ostream& arg1, const Number& arg2){
+	return arg1 << arg2.Hodnota();
+}
+
 
 int main() {
-	LongReal LR;
-	Double DBL;
-	Number NMBR;
-	LR.tisk();
-	DBL.tisk();
-	string tlacitko;
-	double m_doubleHodnota;
-	zlomek pole[10]; //volaji se implicitni konstruktory 10x
-	for (int i = 0; i < 10; i++) {
-		cout << "zadej zlomek c." << i+1 << ":" << endl;
-		pole[i].nacti();
-		pole[i].tisk();
-		cout << endl;
-	}
-	//seradit pomoci qsort funkce 
-	qsort(pole, sizeof(pole) / sizeof(zlomek), sizeof(zlomek), zlomek::porovnej);
-	cout << "Porovnane pole:" << endl;
-	for (int j = 0; j < 10 ;j++) {
-		cout << "prvek c." << j + 1 << ":";
-		pole[j].tisk();
-		cout << endl;
-	}
+	zlomek z(1, 3);
+	Double d;
+	d.nacti();
+	LongReal l;
+	l.nacti();
+
+	cout << "z = " << z.Hodnota() << ", d = " << d.Hodnota() << ", l = " << l.Hodnota() << endl;
+
+	Number& n1 = z;
+	Number& n2 = d;
+	Number& n3 = l;
+
+	cout << "soucet = " << n1 + (n2 + n3) << endl;
+	//cout << "soucet =" << n1.operator+(n2.operator+(n3)) << endl;
+
+	list <Number*> seznam; //linearni seznam
+	string odpoved;
+		do{
+			cout << "Zvol typ cisla (1 zlomek, 2 LongReal, 3 Double)" << endl;
+			cin >> odpoved;
+			Number* ukazatelPredek;
+			if(odpoved.compare("1") == 0){
+				ukazatelPredek = new zlomek();
+			}
+			else if(odpoved.compare("2") == 0){
+				ukazatelPredek = new LongReal();
+
+			}
+			else if(odpoved.compare("3") == 0){
+				ukazatelPredek = new Double();
+			}
+			else{
+				cout << "Zadal jsi spatnou odpoved, ty demetere" << endl;
+				return 0;
+			}
+			// nactem hodnotu cisla z klavesnice 
+			cout << "Zadej hodnotu: ";
+
+			try{
+			ukazatelPredek->nacti(); // chceme volat cteni potomku
+			seznam.push_back(ukazatelPredek); //ukladam do linearniho seznamu
+			}
+			catch(char* err){
+				cout << "Pozor! Nastala chyba! Zadejte znovu. " << err << endl;
+				delete ukazatelPredek;
+			}
+			cout << "Pokracovat (A/N)?";
+			cin >> odpoved;
+		}while(odpoved.compare("A") == 0);
+
+		//tisk na obrazovku
+		cout << endl << "Zadana cisla jsou tyto: " << endl;
+		list<Number*>::iterator i;
+
+		try{
+			for(i = seznam.begin(); i!=seznam.end(); i++){
+				(*i)->tisk(); //volam ukazatelPredek->tisk()
+				cout << *(*i); // cout << Number(???)
+
+				cout << endl;
+			}
+		}
+		catch(exception &err){
+			cerr << "Nelze vytisknout obsah objektu chyba!!! " << endl;
+			cerr << err.what() << endl;
+		}
+
+		double soucet = 0;
+		try{
+			for(i = seznam.begin(); i!=seznam.end(); i++){
+			
+				soucet = *(*i)+soucet;
+				//soucet = UkazatelPredek->operator+(soucet); //opearator+(double arg);
+				(*i)->tisk(); //volam ukazatelPredek->tisk()
+				cout << endl;
+			}
+			cout << "soucet = " << soucet << endl;
+		}
+		catch(exception &err){
+			cout << "Nelze vypocist soucet, chyba !!!" << endl;
+			cout << err.what() << endl;
+		}
+		for(i = seznam.begin(); i!=seznam.end(); i++){
+			delete (*i); //dealokace ukazatelPredek
+		}
+
+	//LongReal LR;
+	//Double DBL;
+	//Number NMBR;
+	//LR.tisk();
+	//DBL.tisk();
+	//string tlacitko;
+	//double m_doubleHodnota;
+	//zlomek pole[10]; //volaji se implicitni konstruktory 10x
+	//for (int i = 0; i < 10; i++) {
+	//	cout << "zadej zlomek c." << i+1 << ":" << endl;
+	//	pole[i].nacti();
+	//	pole[i].tisk();
+	//	cout << endl;
+	//}
+	////seradit pomoci qsort funkce 
+	//qsort(pole, sizeof(pole) / sizeof(zlomek), sizeof(zlomek), zlomek::porovnej);
+	//cout << "Porovnane pole:" << endl;
+	//for (int j = 0; j < 10 ;j++) {
+	//	cout << "prvek c." << j + 1 << ":";
+	//	pole[j].tisk();
+	//	cout << endl;
+	//}
 
 	return 0;
 }

@@ -6,8 +6,6 @@ Double::Double(){
 
 
 Double::~Double(){
-	cout << "Volani destruktoru tridy \"Double\"" << endl;
-
 }
 
 
@@ -18,8 +16,12 @@ void Double::nacti(){
 }
 
 
-void Double::tisk(){
+void Double::tisk() const{
 
 	cout << m_dblHodnota << endl;
+}
+
+double Double::Hodnota() const{
+	return m_dblHodnota;
 }
 

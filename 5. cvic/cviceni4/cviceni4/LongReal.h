@@ -17,6 +17,7 @@ private:
 
 public:
 	void nacti();
-	void tisk();
+	void tisk() const;
+	double Hodnota() const;
 };
 #endif
