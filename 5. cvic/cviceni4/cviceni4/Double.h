@@ -5,8 +5,7 @@
 
 using namespace std;
 
-class Double :
-	public Number{
+class Double : public Number{
 
 public:
 	Double();
