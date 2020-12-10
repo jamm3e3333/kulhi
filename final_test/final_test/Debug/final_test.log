@@ -1,0 +1,26 @@
+﻿Build started 10. 12. 2020 13:22:57.
+     1>Project "C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\final_test\final_test.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\final_test.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\final_test.exe.embed.manifest.res" Debug\final_test_manifest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\Debug\final_test.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\final_test.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\Debug\final_test.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\Debug\final_test.lib" /MACHINE:X86 Debug\final_test.exe.embed.manifest.res
+         Debug\man.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\final_test.exe.embed.manifest" /manifest Debug\final_test.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\final_test.exe.embed.manifest.res" Debug\final_test_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\Debug\final_test.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\final_test.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\Debug\final_test.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\Debug\final_test.lib" /MACHINE:X86 Debug\final_test.exe.embed.manifest.res
+         Debug\man.obj
+         final_test.vcxproj -> C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\Debug\final_test.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\final_test.unsuccessfulbuild".
+         Touching "Debug\final_test.lastbuildstate".
+     1>Done Building Project "C:\Users\Yenkee\Desktop\vsb-tuo\ing\II. ročník\spt\kulhi\final_test\final_test\final_test.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.13
